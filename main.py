@@ -90,7 +90,53 @@ class Ogrenci:
             }
             x = mongoCol.find_one(data)
             print(x)   
-class Sinav:
-    pass
 
-secim()
+def test():
+    sinif = input("sinif: ")
+    numara = input("numara: ")
+    sinavAdi = input("Sınav adı: ")
+    sinavPuani = input("Sinav puanı: ")
+    sinav = Sinav(sinif, numara, sinavAdi, sinavPuani, None, None, None, None)
+    sinav.sinavKayit()
+class Sinav:
+    def __init__(self, sinif, numara, sinavAdi, sinavPuan, sira, sutun, maxSatir, workbook):
+        self.sinif = sinif
+        self.numara = numara
+        self.sinavAdi = sinavAdi
+        self.sinavPuan = sinavPuan
+        self.sira = sira
+        self.sutun = sutun
+        self.maxSatir = maxSatir
+        self.workbook = workbook
+
+    # tekli sınav kayıt (tek senerde bir öğrenci)
+    def sinavKayit(self):
+        if self.sinif == "m":
+            mongoCol = mongoDB["m_sinav"]
+            data = {
+                '_id': self.numara,
+                'sinavlar': 
+                    {
+                        self.sinavAdi: self.sinavPuan 
+                    }
+            }
+            mongoCol.insert_one(data)
+            print(f"{self.numara}'lı öğrencinin {self.sinavAdi} adlı sınavından {self.sinavPuan}'ı eklendi")
+
+    # çoklu sınav kayıt gerekli parametreler ()
+    def coklu_sinavKayit(self):
+        pass
+
+    # tek bir öprenciden tek bir sinav silme 
+    def sinavSil(self):
+        pass
+
+    # belirli sınavların ortalamasını alarak sonuclarını excel dosyasına kayıt etme
+    def sinavHesapla(self):
+        pass
+
+
+test()
+
+# programı başlatan fonksiyon
+#secim()
